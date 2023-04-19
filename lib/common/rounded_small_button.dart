@@ -13,6 +13,7 @@ class RoundedSmallButton extends StatelessWidget {
   final String label;
   final Color backgroundColor;
   final Color textColor;
+
   @override
   Widget build(BuildContext context) {
     return Chip(
@@ -26,7 +27,7 @@ class RoundedSmallButton extends StatelessWidget {
       backgroundColor: backgroundColor,
       labelPadding: const EdgeInsets.symmetric(
         horizontal: 20,
-        vertical: 5,
+        vertical: 20, //ban dau la 5
       ),
     );
   }
