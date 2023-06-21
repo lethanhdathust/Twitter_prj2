@@ -27,7 +27,7 @@ class RoundedSmallButton extends StatelessWidget {
       backgroundColor: backgroundColor,
       labelPadding: const EdgeInsets.symmetric(
         horizontal: 20,
-        vertical: 20, //ban dau la 5
+        vertical: 5, //ban dau la 5
       ),
     );
   }
