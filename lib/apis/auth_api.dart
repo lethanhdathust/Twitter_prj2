@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:twitter_clone/core/core.dart';
 import 'package:twitter_clone/core/providers.dart';
+
 // inject the dependencies form another provider
 final authAPIProvider = Provider((ref) {
   final account = ref.watch(appwriteAccountProvider);
@@ -18,6 +19,7 @@ abstract class IAuthAPI {
 
   FutureEither<model.Account> signUp(
       {required String email, required String password});
+  FutureEither<model.Session> login();
 }
 
 class AuthAPI implements IAuthAPI {
