@@ -1,7 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/constants/appwrite_constants.dart';
-//This can create a global variable, give us "ref" to use to read other 
+//This can create a global variable, give us "ref" to use to read other
 // providers and write some logic
 
 final appwriteClientProvider = Provider(
@@ -14,7 +14,22 @@ final appwriteClientProvider = Provider(
   },
 );
 final appwriteAccountProvider = Provider((ref) {
-  final client = ref.watch(appwriteClientProvider); 
-  
+  final client = ref.watch(appwriteClientProvider);
+
   return Account(client);
+});
+
+final appwriteDatabaseProvider = Provider((ref) {
+  final client = ref.watch(appwriteClientProvider);
+  return Databases(client);
+});
+
+final appwriteStorageProvider = Provider((ref) {
+  final client = ref.watch(appwriteClientProvider);
+  return Storage(client);
+});
+
+final appwriteRealtimeProvider = Provider((ref) {
+  final client = ref.watch(appwriteClientProvider);
+  return Realtime(client);
 });
