@@ -8,11 +8,8 @@ class SideDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentUser = ref.watch(currentUserDetailsProvider).value;
+  
 
-    if (currentUser == null) {
-      return const Loader();
-    }
     return SafeArea(
         child: Drawer(
       backgroundColor: Pallete.backgroundColor,
