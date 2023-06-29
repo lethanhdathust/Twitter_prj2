@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:twitter_clone/constants/constants.dart';
 
 import '../../../theme/pallete.dart';
+import '../../tweet/views/create_tweet_view.dart';
+import '../widgets/side_drawer.dart';
 
 class HomeView extends StatefulWidget {
   static route() => MaterialPageRoute(
