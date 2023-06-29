@@ -1,24 +1,33 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart ';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:twitter_clone/common/loading_page.dart';
 import 'package:twitter_clone/common/rounded_small_button.dart';
 import 'package:twitter_clone/constants/uiconstants.dart';
+import 'package:twitter_clone/features/auth/controller/auth_controller.dart';
 import 'package:twitter_clone/features/auth/widgets/auth_field.dart';
 import 'package:twitter_clone/theme/theme.dart';
 
-class LoginView extends StatefulWidget {
+class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  ConsumerState<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewState extends ConsumerState<LoginView> {
   //We want the appbar doesnot rebuild even during the oading indicator
   //So we have final appbar, when have a rebuild it doesnot call the function again
   final appBar = UIConstants.appBar();
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  void onLogin() {
+    ref.watch(authControllerProvider.notifier).login(
+        email: emailController.text,
+        password: passwordController.text,
+        context: context);
+  }
 
   @override
   void dispose() {
@@ -29,9 +38,11 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the state value from the authControllerProvider
+    final isLoading = ref.watch(authControllerProvider.notifier).state;
     return Scaffold(
       appBar: appBar,
-      body: Center(
+      body:isLoading ? const Loader(): Center(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -82,10 +93,10 @@ class _LoginViewState extends State<LoginView> {
                       color: Pallete.whiteColor,
                       fontSize: 16,
                     ),
-                    // Trong đoạn mã này, khi người dùng thực hiện một hành động nhấn và nhả trên widget 
-                    //được gắn với TapGestureRecognizer, hàm được gán cho onTap sẽ được gọi. 
-                    //Bạn có thể thay đổi nội dung của hàm này để thực hiện các hành động 
-                    //cụ thể mong muốn khi người dùng 
+                    // Trong đoạn mã này, khi người dùng thực hiện một hành động nhấn và nhả trên widget
+                    //được gắn với TapGestureRecognizer, hàm được gán cho onTap sẽ được gọi.
+                    //Bạn có thể thay đổi nội dung của hàm này để thực hiện các hành động
+                    //cụ thể mong muốn khi người dùng
                     //thực hiện hành động nhấn và nhả trên widget tương ứng. Ví dụ:
                     recognizer: TapGestureRecognizer()..onTap = () {},
                   ),
