@@ -11,7 +11,7 @@ class UIConstants {
         color: Pallete.blueColor,
         height: 30,
       ),
-      centerTitle: true ,
+      centerTitle: true,
     );
   }
 }
