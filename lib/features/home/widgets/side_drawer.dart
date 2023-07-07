@@ -8,8 +8,6 @@ class SideDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-  
-
     return SafeArea(
         child: Drawer(
       backgroundColor: Pallete.backgroundColor,
@@ -22,13 +20,42 @@ class SideDrawer extends ConsumerWidget {
               size: 30,
             ),
             title: const Text(
-               'My Profile',
+              'My Profile',
               style: TextStyle(
                 fontSize: 22,
               ),
             ),
+            onTap: () {},
+          ),
 
-          )
+          ListTile(
+            leading: const Icon(
+              Icons.payment,
+              size: 30,
+            ),
+            title: const Text(
+              'Twitter Blue',
+              style: TextStyle(
+                fontSize: 22,
+              ),
+            ),
+            onTap: () {},
+          ),
+
+          ListTile(
+            leading: const Icon(
+              Icons.logout,
+              size: 30,
+            ),
+            title: const Text(
+              'Log Out',
+              style: TextStyle(
+                fontSize: 22,
+              ),
+            ),
+            onTap: () {},
+          ),
+          
         ],
       ),
     ));
