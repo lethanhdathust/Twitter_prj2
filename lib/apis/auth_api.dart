@@ -24,7 +24,7 @@ abstract class IAuthAPI {
     required String password,
   });
   Future<model.Account?> currentUserAccount();
-  FutureEitherVoid logout();
+  // FutureEitherVoid logout();
 }
 
 class AuthAPI implements IAuthAPI {

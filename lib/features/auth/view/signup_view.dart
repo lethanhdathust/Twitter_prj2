@@ -54,82 +54,85 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
     final loading = ref.watch(authControllerProvider);
     return Scaffold(
       appBar: appBar,
-      body: loading == true ? const LoadingPage(): Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            child: Column(
-              children: [
-                //TextField1
-                AuthField(
-                  controller: emailController,
-                  hintText: 'Email',
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                AuthField(
-                  controller: passwordController,
-                  hintText: 'Password',
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: RoundedSmallButton(
-                    onTap: () {
-                      var x = getIPAddress();
-                      print(x.then((value) => debugPrint(value)));
-                      onSignUp();
-                    },
-                    label: 'Done',
-                    backgroundColor: Pallete.blueColor,
-                    textColor: Pallete.whiteColor,
+      body: loading == true
+          ? const LoadingPage()
+          : Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
                   ),
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                Text.rich(
-                  TextSpan(
-                    children: const [
-                      TextSpan(
-                        text: ' Login',
-                        style: TextStyle(
-                          color: Pallete.blueColor,
-                          fontSize: 16,
+                  child: Column(
+                    children: [
+                      //TextField1
+                      AuthField(
+                        controller: emailController,
+                        hintText: 'Email',
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      AuthField(
+                        controller: passwordController,
+                        hintText: 'Password',
+                      ),
+                      const SizedBox(
+                        height: 35,
+                      ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: RoundedSmallButton(
+                          onTap: () {
+                            var x = getIPAddress();
+                            print(AppWriteConstants.endPoint);
+                            print(x.then((value) => debugPrint(value)));
+                            onSignUp();
+                          },
+                          label: 'Done',
+                          backgroundColor: Pallete.blueColor,
+                          textColor: Pallete.whiteColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 35,
+                      ),
+                      Text.rich(
+                        TextSpan(
+                          children: const [
+                            TextSpan(
+                              text: ' Login',
+                              style: TextStyle(
+                                color: Pallete.blueColor,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                          text: "Don't have a account",
+                          style: const TextStyle(
+                            color: Pallete.whiteColor,
+                            fontSize: 16,
+                          ),
+                          // Trong đoạn mã này, khi người dùng thực hiện một hành động nhấn và nhả trên widget
+                          //được gắn với TapGestureRecognizer, hàm được gán cho onTap sẽ được gọi.
+                          //Bạn có thể thay đổi nội dung của hàm này để thực hiện các hành động
+                          //cụ thể mong muốn khi người dùng
+                          //thực hiện hành động nhấn và nhả trên widget tương ứng. Ví dụ:
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginView(),
+                                ),
+                              );
+                            },
                         ),
                       ),
                     ],
-                    text: "Don't have a account",
-                    style: const TextStyle(
-                      color: Pallete.whiteColor,
-                      fontSize: 16,
-                    ),
-                    // Trong đoạn mã này, khi người dùng thực hiện một hành động nhấn và nhả trên widget
-                    //được gắn với TapGestureRecognizer, hàm được gán cho onTap sẽ được gọi.
-                    //Bạn có thể thay đổi nội dung của hàm này để thực hiện các hành động
-                    //cụ thể mong muốn khi người dùng
-                    //thực hiện hành động nhấn và nhả trên widget tương ứng. Ví dụ:
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginView(),
-                          ),
-                        );
-                      },
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }
