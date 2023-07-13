@@ -10,7 +10,7 @@ class SideDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentUser = ref.watch(currentUserDetailsProvider).value;
+    final currentUser = ref.watch(currentUserAccountProvider).value;
 
     if (currentUser == null) {
       return const Loader();
@@ -34,10 +34,6 @@ class SideDrawer extends ConsumerWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                UserProfileView.route(currentUser),
-              );
             },
           ),
           ListTile(
@@ -52,14 +48,7 @@ class SideDrawer extends ConsumerWidget {
               ),
             ),
             onTap: () {
-              ref
-                  .read(userProfileControllerProvider.notifier)
-                  .updateUserProfile(
-                    UserModel: currentUser.copyWith(isTwitterBlue: true),
-                    context: context,
-                    bannerFile: null,
-                    profileFile: null,
-                  );
+            
             },
           ),
           ListTile(
