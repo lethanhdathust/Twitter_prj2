@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/common/loading_page.dart';
+import 'package:twitter_clone/features/auth/controller/auth_controller.dart';
+import 'package:twitter_clone/models/user_model.dart';
 import 'package:twitter_clone/theme/pallete.dart';
 
 class SideDrawer extends ConsumerWidget {
@@ -8,6 +10,12 @@ class SideDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentUser = ref.watch(currentUserDetailsProvider).value;
+
+    if (currentUser == null) {
+      return const Loader();
+    }
+
     return SafeArea(
         child: Drawer(
       backgroundColor: Pallete.backgroundColor,
@@ -25,9 +33,13 @@ class SideDrawer extends ConsumerWidget {
                 fontSize: 22,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                UserProfileView.route(currentUser),
+              );
+            },
           ),
-
           ListTile(
             leading: const Icon(
               Icons.payment,
@@ -39,9 +51,17 @@ class SideDrawer extends ConsumerWidget {
                 fontSize: 22,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              ref
+                  .read(userProfileControllerProvider.notifier)
+                  .updateUserProfile(
+                    UserModel: currentUser.copyWith(isTwitterBlue: true),
+                    context: context,
+                    bannerFile: null,
+                    profileFile: null,
+                  );
+            },
           ),
-
           ListTile(
             leading: const Icon(
               Icons.logout,
@@ -55,7 +75,6 @@ class SideDrawer extends ConsumerWidget {
             ),
             onTap: () {},
           ),
-          
         ],
       ),
     ));
