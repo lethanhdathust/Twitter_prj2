@@ -36,6 +36,8 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _page == 0 ? appBar : null,
+//* Sẽ chỉ hiển thị icon appbar nếu là trang chủ ( page = 0 ) 
+// nếu ko sẽ kgông hiển thị appBar
       body: IndexedStack(
         index: _page,
         // children: UIConstants.bottomTabBarPages,
@@ -48,6 +50,7 @@ class _HomeViewState extends State<HomeView> {
           size: 28,
         ),
       ),
+   
       drawer: const SideDrawer(),
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: _page,
@@ -62,12 +65,14 @@ class _HomeViewState extends State<HomeView> {
               color: Pallete.whiteColor,
             ),
           ),
+   
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               AssetsConstants.searchIcon,
               color: Pallete.whiteColor,
             ),
           ),
+   
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               _page == 2
