@@ -39,7 +39,7 @@ class Tweet {
     String? link,
     List<String>? imageLinks,
     String? uid,
-    TweetType? tweetType,
+    TweetType? tweetType, 
     DateTime? tweetedAt,
     List<String>? likes,
     List<String>? commentIds,

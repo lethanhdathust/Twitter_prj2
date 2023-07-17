@@ -10,24 +10,34 @@ import 'package:twitter_clone/models/user_model.dart';
 import 'package:appwrite/models.dart' as model;
 import 'package:flutter/material.dart';
 
+// On the other hand, ChangeNotifierProvider is used to provide a
+//ChangeNotifier instance to dependent widgets.
+// A ChangeNotifier is also an object that holds state
+//and provides methods to modify that state. However,
+//when the state changes, you need to manually call the notifyListeners()
+// method to notify dependent widgets.
 final authControllerProvider =
     StateNotifierProvider<AuthController, bool>((ref) {
   return AuthController(
-  ref.watch(authAPIProvider),
-   ref.watch(userAPIProvider),
+    ref.watch(authAPIProvider),
+    ref.watch(userAPIProvider),
   );
 });
-// final currentUserDetailsProvider = FutureProvider((ref) {
-//   final currentUserId = ref.watch(currentUserAccountProvider).value!.$id;
-//   final userDetails = ref.watch(userDetailsProvider(currentUserId));
-//   return userDetails.value;
-// });
 
-// final userDetailsProvider = FutureProvider.family((ref, String uid) {
-//   final authController = ref.watch(authControllerProvider.notifier);
-//   return authController.get(uid);
-// });
+final currentUserDetailsProvider = FutureProvider((ref) {
+  final currentUserId = ref.watch(currentUserAccountProvider).value!.$id;
+  print(currentUserId + "current");
 
+  final userDetails = ref.watch(userDetailsProvider(currentUserId));
+  // print(userDetails.value);
+  return userDetails.value;
+});
+// return the user details
+final userDetailsProvider = FutureProvider.family((ref, String uid) {
+  final authController = ref.watch(authControllerProvider.notifier);
+  return authController.getUserData(uid);
+});
+//return a future value that will be returned when the curent user is authenticated
 final currentUserAccountProvider = FutureProvider((ref) {
   final authController = ref.watch(authControllerProvider.notifier);
   return authController.currentUser();
@@ -35,7 +45,7 @@ final currentUserAccountProvider = FutureProvider((ref) {
 
 // <int> là một tham số kiểu được sử dụng để chỉ định kiểu dữ liệu mà StateNotifier sẽ lưu trữ và quản lý.
 class AuthController extends StateNotifier<bool> {
-  AuthController( authAPI, UserAPI userAPI)
+  AuthController(authAPI, UserAPI userAPI)
       : _authApi = authAPI,
         _userAPI = userAPI,
         super(false);
@@ -54,9 +64,23 @@ class AuthController extends StateNotifier<bool> {
     state = false;
     res.fold(
       (l) => showSnackBar(context, l.message),
-      (r) {
-        showSnackBar(context, "Account created successfully! Please login");
-        Navigator.push(context, LoginView.route());
+      (r) async {
+        UserModel userModel = UserModel(
+          name: getNameFromEmail(email),
+          email: email,
+          bannerPic: "",
+          bio: "",
+          followers: const [],
+          following: const [],
+          isTwitterBlue: false,
+          profilePic: "",
+          uid: r.$id,
+        );
+        final res2 = await _userAPI.saveUserData(userModel);
+        res2.fold((l) => showSnackBar(context, l.message), (r) {
+          showSnackBar(context, "Account created successfully! Please login");
+          Navigator.push(context, LoginView.route());
+        });
       },
     );
   }
@@ -77,8 +101,13 @@ class AuthController extends StateNotifier<bool> {
   }
 
   Future<UserModel> getUserData(String uid) async {
+    print("document:" + uid);
+
     final document = await _userAPI.getUserData(uid);
+    print("document: " + document.toString());
     final updatedUser = UserModel.fromMap(document.data);
+    print("updateuser: " + updatedUser.toString());
+ 
     return updatedUser;
   }
 }

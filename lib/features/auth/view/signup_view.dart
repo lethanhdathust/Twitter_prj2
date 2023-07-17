@@ -83,12 +83,12 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                         alignment: Alignment.topRight,
                         child: RoundedSmallButton(
                           onTap: () {
-                            var x = getIPAddress();
-                            print(AppWriteConstants.endPoint);
-                            print(x.then((value) => debugPrint(value)));
+                            // var x = getIPAddress();
+                            // print(AppWriteConstants.endPoint);
+                            // print(x.then((value) => debugPrint(value)));
                             onSignUp();
                           },
-                          label: 'Done',
+                          label: 'Signup',
                           backgroundColor: Pallete.blueColor,
                           textColor: Pallete.whiteColor,
                         ),
@@ -96,36 +96,36 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                       const SizedBox(
                         height: 35,
                       ),
-                      Text.rich(
-                        TextSpan(
-                          children: const [
-                            TextSpan(
-                              text: ' Login',
-                              style: TextStyle(
-                                color: Pallete.blueColor,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                          text: "Don't have a account",
-                          style: const TextStyle(
-                            color: Pallete.whiteColor,
-                            fontSize: 16,
-                          ),
-                          // Trong đoạn mã này, khi người dùng thực hiện một hành động nhấn và nhả trên widget
-                          //được gắn với TapGestureRecognizer, hàm được gán cho onTap sẽ được gọi.
-                          //Bạn có thể thay đổi nội dung của hàm này để thực hiện các hành động
-                          //cụ thể mong muốn khi người dùng
-                          //thực hiện hành động nhấn và nhả trên widget tương ứng. Ví dụ:
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const LoginView(),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, LoginView.route());
+                        },
+                        child: Text.rich(
+                          TextSpan(
+                            children: const [
+                              TextSpan(
+                                text: ' Login',
+                                style: TextStyle(
+                                  color: Pallete.blueColor,
+                                  fontSize: 16,
                                 ),
-                              );
-                            },
+                              ),
+                            ],
+                            text: "Don't have a account",
+                            style: const TextStyle(
+                              color: Pallete.whiteColor,
+                              fontSize: 16,
+                            ),
+                            // Trong đoạn mã này, khi người dùng thực hiện một hành động nhấn và nhả trên widget
+                            //được gắn với TapGestureRecognizer, hàm được gán cho onTap sẽ được gọi.
+                            //Bạn có thể thay đổi nội dung của hàm này để thực hiện các hành động
+                            //cụ thể mong muốn khi người dùng
+                            //thực hiện hành động nhấn và nhả trên widget tương ứng. Ví dụ:
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.push(context, LoginView.route());
+                              },
+                          ),
                         ),
                       ),
                     ],

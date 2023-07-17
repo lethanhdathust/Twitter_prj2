@@ -24,6 +24,8 @@ class StorageAPI {
       );
       imageLinks.add(
         AppWriteConstants.imageUrl(uploadedImage.$id),
+        // uploadedImage.$id
+        
       );
     }
     return imageLinks;

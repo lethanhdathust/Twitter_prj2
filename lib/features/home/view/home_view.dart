@@ -6,7 +6,7 @@ import 'package:twitter_clone/features/home/widgets/side_drawer.dart';
 
 import '../../../theme/pallete.dart';
 import '../../tweet/views/create_tweet_view.dart';
-import '../widgets/side_drawer.dart';
+// import '../widgets/side_drawer.dart';
 
 class HomeView extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -29,16 +29,18 @@ class _HomeViewState extends State<HomeView> {
   }
 
   onCreateTweet() {
-    // Navigator.push(context, CreateTweetScreen.route());
+    Navigator.push(context, CreateTweetScreen.route());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _page == 0 ? appBar : null,
-      body: IndexedStack(
+      body:
+          // The widget will keep state maintined
+        IndexedStack(
         index: _page,
-        // children: UIConstants.bottomTabBarPages,
+        children: UIConstants.bottomTabBaRPages,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: onCreateTweet,

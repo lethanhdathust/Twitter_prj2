@@ -5,6 +5,7 @@ import 'package:twitter_clone/common/loading_page.dart';
 import 'package:twitter_clone/common/rounded_small_button.dart';
 import 'package:twitter_clone/constants/uiconstants.dart';
 import 'package:twitter_clone/features/auth/controller/auth_controller.dart';
+import 'package:twitter_clone/features/auth/view/signup_view.dart';
 import 'package:twitter_clone/features/auth/widgets/auth_field.dart';
 import 'package:twitter_clone/theme/theme.dart';
 
@@ -75,7 +76,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                           onTap: () {
                             onLogin();
                           },
-                          label: 'Done',
+                          label: 'Login',
                           backgroundColor: Pallete.blueColor,
                           textColor: Pallete.whiteColor,
                         ),
@@ -104,7 +105,15 @@ class _LoginViewState extends ConsumerState<LoginView> {
                           //Bạn có thể thay đổi nội dung của hàm này để thực hiện các hành động
                           //cụ thể mong muốn khi người dùng
                           //thực hiện hành động nhấn và nhả trên widget tương ứng. Ví dụ:
-                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignUpView(),
+                                ),
+                              );
+                            },
                         ),
                       ),
                     ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:twitter_clone/theme/pallete.dart';
 
 class AppTheme {
-  static ThemeData theme = ThemeData.dark().copyWith(
+  static ThemeData darkTheme = ThemeData.dark().copyWith(
     scaffoldBackgroundColor: Pallete.backgroundColor,
     appBarTheme: const AppBarTheme(
       backgroundColor: Pallete.backgroundColor,
@@ -12,4 +12,10 @@ class AppTheme {
       backgroundColor: Pallete.blueColor,
     ),
   );
+  static ThemeData lightTheme = ThemeData.light().copyWith(
+      scaffoldBackgroundColor: Pallete.whiteColor,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Pallete.whiteColor,
+        elevation: 0,
+      ));
 }

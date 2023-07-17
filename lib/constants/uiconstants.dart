@@ -14,4 +14,10 @@ class UIConstants {
       centerTitle: true,
     );
   }
+
+  static List<Widget> bottomTabBaRPages = [
+    const Text("Feed screen"),
+    const Text("Search screen"),
+    const Text("Notification screen")
+  ];
 }

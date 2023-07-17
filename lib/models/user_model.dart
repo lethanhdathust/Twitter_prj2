@@ -22,7 +22,9 @@ class UserModel {
     required this.bio,
     required this.isTwitterBlue,
   });
-
+// we need copyWoth function beacause when we update a fiels as  email
+// we can not driectly change the field like user.setEmail because is is final ,
+// So we must use copyWoth function to update the field email
   UserModel copyWith({
     String? email,
     String? name,

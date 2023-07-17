@@ -56,8 +56,8 @@ class UserAPI implements IUserAPI {
   }
 
   @override
-  Future<model.Document> getUserData(String uid) {
-    return _db.getDocument(
+  Future<model.Document> getUserData(String uid) async {
+    return  await _db.getDocument(
       databaseId: AppWriteConstants.databaseId,
       collectionId: AppWriteConstants.usersCollection,
       documentId: uid,
