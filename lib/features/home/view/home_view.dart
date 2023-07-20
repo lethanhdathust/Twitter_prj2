@@ -40,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
           // The widget will keep state maintined
         IndexedStack(
         index: _page,
-        children: UIConstants.bottomTabBaRPages,
+        children: UIConstants.bottomTabBarPages,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: onCreateTweet,

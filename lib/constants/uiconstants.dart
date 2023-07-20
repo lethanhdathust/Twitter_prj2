@@ -1,6 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:twitter_clone/constants/assets_constants.dart';
+import 'package:twitter_clone/constants/constants.dart';
+import 'package:twitter_clone/features/explore/view/explore_view.dart';
+// import 'package:twitter_clone/features/notifications/views/notification_view.dart';
 import 'package:twitter_clone/features/tweet/widgets/tweet_list.dart';
 import 'package:twitter_clone/theme/pallete.dart';
 
@@ -9,7 +13,6 @@ class UIConstants {
     return AppBar(
       title: SvgPicture.asset(
         AssetsConstants.twitterLogo,
-        // ignore: deprecated_member_use
         color: Pallete.blueColor,
         height: 30,
       ),
@@ -17,9 +20,9 @@ class UIConstants {
     );
   }
 
-  static const List<Widget> bottomTabBaRPages = [
+  static const List<Widget> bottomTabBarPages = [
     TweetList(),
-    Text("Search screen"),
-    Text("Notification screen")
+    ExploreView(),
+    // NotificationView(),
   ];
 }

@@ -4,7 +4,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/common/common.dart';
-import 'package:twitter_clone/common/loading_page.dart';
 import 'package:twitter_clone/constants/constants.dart';
 import 'package:twitter_clone/features/auth/controller/auth_controller.dart';
 import 'package:twitter_clone/features/auth/view/login_view.dart';
@@ -13,7 +12,9 @@ import 'package:twitter_clone/theme/theme.dart';
 
 class SignUpView extends ConsumerStatefulWidget {
   const SignUpView({super.key});
-
+  static route() => MaterialPageRoute(
+        builder: (context) => const SignUpView(),
+      );
   @override
   ConsumerState<SignUpView> createState() => _SignUpViewState();
 }
@@ -75,6 +76,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                       AuthField(
                         controller: passwordController,
                         hintText: 'Password',
+                        hide: true,
                       ),
                       const SizedBox(
                         height: 35,
@@ -83,7 +85,6 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                         alignment: Alignment.topRight,
                         child: RoundedSmallButton(
                           onTap: () {
-
                             onSignUp();
                           },
                           label: 'Signup',

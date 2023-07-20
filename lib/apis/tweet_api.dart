@@ -64,7 +64,7 @@ class TweetAPI implements ITweetAPI {
         collectionId: AppWriteConstants.tweetsCollection,
         queries: [
           // Query.search("tweetedAt", "1689527201001")
-          Query.orderDesc('tweetedAt'),
+          Query.orderDesc('tweeteqedAt'),
           // Query.greaterThan("tweetedAt", value)
         ],
       );
