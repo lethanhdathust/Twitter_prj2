@@ -20,6 +20,7 @@ class StorageAPI {
       final uploadedImage = await _storage.createFile(
         bucketId: AppWriteConstants.imagesBucket,
         fileId: ID.unique(),
+        // ignore: deprecated_member_use
         file: InputFile(path: file.path),
       );
       imageLinks.add(

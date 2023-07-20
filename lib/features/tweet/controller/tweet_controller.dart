@@ -34,7 +34,9 @@ final getRepliesToTweetsProvider = FutureProvider.family((ref, Tweet tweet) {
   final tweetController = ref.watch(tweetControllerProvider.notifier);
   return tweetController.getRepliesToTweet(tweet);
 });
-
+// We do not get an instance of tweetController in here, we get directly the tweet api in here
+// because we are not going to register this function in controller because we do not have any job for it
+// I think because we do not have any logic so call directly
 final getLatestTweetProvider = StreamProvider((ref) {
   final tweetAPI = ref.watch(tweetAPIProvider);
   return tweetAPI.getLatestTweet();
@@ -85,6 +87,7 @@ class TweetController extends StateNotifier<bool> {
       likes.add(user.uid);
     }
 
+// We update the filed follow the 
     tweet = tweet.copyWith(likes: likes);
     final res = await _tweetAPI.likeTweet(tweet);
     res.fold((l) => null, (r) {

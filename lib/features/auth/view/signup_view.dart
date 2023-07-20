@@ -83,9 +83,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                         alignment: Alignment.topRight,
                         child: RoundedSmallButton(
                           onTap: () {
-                            // var x = getIPAddress();
-                            // print(AppWriteConstants.endPoint);
-                            // print(x.then((value) => debugPrint(value)));
+
                             onSignUp();
                           },
                           label: 'Signup',

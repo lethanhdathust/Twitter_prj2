@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/common/error_page.dart';
@@ -12,10 +14,14 @@ class TweetList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // First, we get all the tweets from db
     return ref.watch(getTweetsProvider).when(
           data: (tweets) {
+            // Then it will check if there are any new tweets was added
             return ref.watch(getLatestTweetProvider).when(
                   data: (data) {
+                    debugPrint(data.toString());
+                    // It will check if a create function has been called
                     if (data.events.contains(
                       'databases.*.collections.${AppWriteConstants.tweetsCollection}.documents.*.create',
                     )) {
@@ -23,6 +29,7 @@ class TweetList extends ConsumerWidget {
                     } else if (data.events.contains(
                       'databases.*.collections.${AppWriteConstants.tweetsCollection}.documents.*.update',
                     )) {
+                      // Remember watching logic again 
                       // get id of original tweet
                       final startingPoint =
                           data.events[0].lastIndexOf('documents.');

@@ -61,12 +61,14 @@ class _HomeViewState extends State<HomeView> {
               _page == 0
                   ? AssetsConstants.homeFilledIcon
                   : AssetsConstants.homeOutlinedIcon,
+              // ignore: deprecated_member_use
               color: Pallete.whiteColor,
             ),
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               AssetsConstants.searchIcon,
+              // ignore: deprecated_member_use
               color: Pallete.whiteColor,
             ),
           ),
@@ -75,6 +77,7 @@ class _HomeViewState extends State<HomeView> {
               _page == 2
                   ? AssetsConstants.notifFilledIcon
                   : AssetsConstants.notifOutlinedIcon,
+              // ignore: deprecated_member_use
               color: Pallete.whiteColor,
             ),
           ),

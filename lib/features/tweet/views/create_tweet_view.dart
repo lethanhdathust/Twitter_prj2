@@ -53,7 +53,6 @@ class _CreateTweetScreenState extends ConsumerState<CreateTweetScreen> {
   Widget build(BuildContext context) {
     final currentUser = ref.watch(currentUserDetailsProvider).value;
     final isLoading = ref.watch(tweetControllerProvider);
-    print(currentUser?.uid);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
